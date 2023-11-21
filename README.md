@@ -1,4 +1,4 @@
-# algoritmo-A-
+# Algoritmo A*
 Práctica de búsqueda heurística sin adversarios
 
 "El propósito de esta práctica es que el alumno reutilice código que implementa el algoritmo A*. Se bajará código de Github, y lo utilizará para ejecutar este algoritmo para un grafo concreto."
