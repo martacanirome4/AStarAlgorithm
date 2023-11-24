@@ -1,19 +1,21 @@
 # Algoritmo A* - Práctica de búsqueda heurística sin adversarios
 
-Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando código proporcionado por Justin Wetherell en su repositorio de algoritmos y estructuras de datos. A lo largo del desarrollo, se creó una clase principal llamada Main que actúa como punto de entrada para el programa de práctica.
+## **Introducción al Proyecto A* en Java**
 
-## Contenido del repositorio
+### **Descripción**
 
-El repositorio contiene los siguientes elementos principales:
+Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el código proporcionado por Justin Wetherell en su repositorio de algoritmos y estructuras de datos. A lo largo del desarrollo, se ha creado una clase principal llamada `Main` que actúa como punto de entrada para el programa de la práctica.
 
-1. Código A en Java:*
+### **Contenido del Repositorio**
 
-Se ha clonado el código fuente de los algoritmos y estructuras de datos de Justin Wetherell desde su repositorio en Github.
+1. **Código A* en Java:**
+   - Se ha clonado el código fuente de los algoritmos y estructuras de datos de Justin Wetherell desde su repositorio en [Github]               (https://github.com/phishman3579/java-algorithms-implementation).
 
-        ``bash
-        git clone https://github.com/phishman3579/java-algorithms-implementation.git
+   ```bash
+   git clone https://github.com/phishman3579/java-algorithms-implementation.git
+
     
-2. Clase Principal (Main.java):
+2. **Clase Principal (Main.java):**
 
 Se ha desarrollado una clase principal llamada Main, que sirve como punto de entrada para el programa. Inicialmente, el código proporciona una salida simple para verificar el    correcto funcionamiento.
 
@@ -55,12 +57,12 @@ Para verificar la funcionalidad, se puede ejecutar el comando desde el directori
         ```bash
         ant run_main
 
-3. Generación del camino A*
+3. **Generación del camino A***
 
    - Siguiendo la referencia de los tests en Graphs.java, se ha desarrollado un programa principal que utiliza el algoritmo A* para generar un camino entre dos vértices.
 
 
-## Preguntas y Respuestas
+## **Preguntas y Respuestas**
 
 1. Lista ABIERTA:
 La lista ABIERTA, que almacena los nodos candidatos para la expansión, se representa mediante la variable openSet (o una similar) en el código A*.
@@ -78,7 +80,7 @@ La modificación de la heurística para representar la distancia aérea entre v�
 Sí, el método responsable de la reevaluación de nodos se encuentra en la lógica de expansión de nodos y actualización de costos acumulados, probablemente bajo un nombre como updateNode. Este proceso garantiza que se utilice la ruta más eficiente hasta el momento para llegar a cada nodo.
 
 
-## Licencia
+## **Licencia**
 
 Copyright 2023 Marta Canino Romero
 
