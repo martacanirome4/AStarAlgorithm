@@ -11,8 +11,9 @@ Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el có
 1. **Código AStar en Java:**
    - Se ha clonado el código fuente de los algoritmos y estructuras de datos de Justin Wetherell desde su repositorio en [Github]               (https://github.com/phishman3579/java-algorithms-implementation).
 
-   ```bash
-   git clone https://github.com/phishman3579/java-algorithms-implementation.git
+```bash
+git clone https://github.com/phishman3579/java-algorithms-implementation.git
+```
 
     
 2. **Clase Principal (Main.java):**
@@ -53,8 +54,9 @@ public class Main {
 
 Para verificar la funcionalidad, se puede ejecutar el comando desde el directorio del proyecot:
 
-        ```bash
-        ant run_main
+```bash
+ant run_main
+```
 
 3. **Generación del camino A***
 
