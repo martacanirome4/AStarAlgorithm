@@ -9,7 +9,8 @@ Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el có
 ### **Contenido del Repositorio**
 
 1. **Código AStar en Java:**
-   - Se ha clonado el código fuente de los algoritmos y estructuras de datos de Justin Wetherell desde su repositorio en [Github] (https://github.com/phishman3579/java-algorithms-implementation).
+
+Se ha clonado el código fuente de los algoritmos y estructuras de datos de Justin Wetherell desde su repositorio en [Github] (https://github.com/phishman3579/java-algorithms-implementation).
 
 ```bash
 git clone https://github.com/phishman3579/java-algorithms-implementation.git
@@ -17,7 +18,7 @@ git clone https://github.com/phishman3579/java-algorithms-implementation.git
   
 2. **Clase Principal (Main.java):**
 
-Se ha desarrollado una clase principal llamada Main, que sirve como punto de entrada para el programa. Inicialmente, el código proporciona una salida simple para verificar el    correcto funcionamiento.
+Se ha implementado en la clase principal Main, que sirve como punto de entrada para el programa, un programa que a partir de un grafo no dirigido  __UndirectedGraph__ (g) y  un grafo dirigido __DirectedGraph__ (g1), obtiene e imprime por pantalla el camino óptimo entre dos vértices especificados _(en este caso desde v1 hasta v2 para ambos)_ utilizando el algoritmo A*, implementado en la clase AStar.
 
 ```java
 package aplicacion;
@@ -48,6 +49,10 @@ public class Main {
    private static class UndirectedGraph {
       /// Definir grafo
    }
+
+   private static class DirectedGraph {
+      /// Definir grafo
+   }
 }
 ```
 
@@ -56,6 +61,11 @@ Para verificar la funcionalidad, se puede ejecutar el comando desde el directori
 ```bash
 ant run_main
 ```
+
+__Visualicón gráfico de los grafos no dirigidos y dirigidos__
+
+
+__Resultado obtenido para un camino óptimo desde v1 hasta v2__
 
 3. **Generación del camino A***
 
@@ -66,23 +76,41 @@ ant run_main
 
 1. **Lista ABIERTA:**
    
-   La lista ABIERTA, que almacena los nodos candidatos para la expansión, se representa mediante la variable openSet (o una similar) en el código A*.
+La lista ABIERTA, que almacena los nodos candidatos para la expansión, se representa mediante la variable _openSet_ en el código A*.
 
 2. **Función g:**
    
-La función g, que representa el costo acumulado desde el nodo inicial hasta el nodo actual, se refleja comúnmente en una variable llamada g dentro del contexto de un nodo.
+La función g, que representa el costo acumulado desde el nodo inicial hasta el nodo actual, se refleja comúnmente en una variable llamada _gScore_ dentro del contexto de un nodo.
 
 3. **Función f:**
 
-La función f, que es la función de evaluación total utilizada para determinar qué nodo se expandirá, se representa mediante la variable f (o similar) en el contexto de un nodo.
+La función f, que es la función de evaluación total utilizada para determinar qué nodo se expandirá, se representa mediante la variable _fScore_ en el contexto de un nodo.
 
 4. **Modificación de Heurística:**
 
-La modificación de la heurística para representar la distancia aérea entre vértices se realizaría en el método encargado de calcular la heurística, comúnmente llamado calculateHeuristic o h en el código.
+La modificación de la heurística para representar la distancia aérea entre vértices se realizaría en el método encargado de calcular la heurística, llamado _heuristicCostEstimate_ en el código.
 
 5. **Reevaluación de Nodos:**
 
-Sí, el método responsable de la reevaluación de nodos se encuentra en la lógica de expansión de nodos y actualización de costos acumulados, probablemente bajo un nombre como updateNode. Este proceso garantiza que se utilice la ruta más eficiente hasta el momento para llegar a cada nodo.
+Sí, el método responsable de la reevaluación de nodos se encuentra en la lógica de expansión de nodos y actualización de costos acumulados, en la clase interna privada  _reconstructPath_. Este proceso garantiza que se utilice la ruta más eficiente hasta el momento para llegar a cada nodo.
+
+```java
+// Reconstructs path because the path is stored in the edges not the vertices
+    private List<Graph.Edge<T>> reconstructPath(Map<Graph.Vertex<T>,Graph.Vertex<T>> cameFrom, Graph.Vertex<T> current) {
+        final List<Graph.Edge<T>> totalPath = new ArrayList<Graph.Edge<T>>();
+
+        while (current != null) {
+            final Graph.Vertex<T> previous = current;
+            current = cameFrom.get(current);
+            if (current != null) {
+                final Graph.Edge<T> edge = current.getEdge(previous);
+                totalPath.add(edge);
+            }
+        }
+        Collections.reverse(totalPath);
+        return totalPath;
+    }
+```
 
 
 ## **Licencia**
