@@ -19,7 +19,7 @@ Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el có
 
 Se ha desarrollado una clase principal llamada Main, que sirve como punto de entrada para el programa. Inicialmente, el código proporciona una salida simple para verificar el    correcto funcionamiento.
 
-        ``java
+        ```java
         package aplicacion;
     
         import com.jwetherell.algorithms.data_structures.Graph;
@@ -50,6 +50,7 @@ Se ha desarrollado una clase principal llamada Main, que sirve como punto de ent
             }
         
     }
+    ```
 
 
 Para verificar la funcionalidad, se puede ejecutar el comando desde el directorio del proyecot:
