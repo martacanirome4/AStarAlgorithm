@@ -21,7 +21,7 @@ public class Main {
         UndirectedGraph g = new UndirectedGraph();
         System.out.println(g.graph);
         AStar<Integer> aStar = new AStar<Integer>();
-        List<Graph.Edge<Integer>> path = aStar.aStar(g.graph, g.v1, g.v5);
+        List<Graph.Edge<Integer>> path = aStar.aStar(g.graph, g.v1, g.v9);
         System.out.println(path);
 
 
@@ -37,6 +37,9 @@ public class Main {
         final Graph.Vertex<Integer> v6 = new Graph.Vertex<Integer>(6);
         final Graph.Vertex<Integer> v7 = new Graph.Vertex<Integer>(7);
         final Graph.Vertex<Integer> v8 = new Graph.Vertex<Integer>(8);
+        final Graph.Vertex<Integer> v9 = new Graph.Vertex<Integer>(9);
+        final Graph.Vertex<Integer> v10 = new Graph.Vertex<Integer>(10);
+        
         {
             verticies.add(v1);
             verticies.add(v2);
@@ -46,35 +49,34 @@ public class Main {
             verticies.add(v6);
             verticies.add(v7);
             verticies.add(v8);
+            verticies.add(v9);
+            verticies.add(v10);
         }
 
         final List<Edge<Integer>> edges = new ArrayList<Edge<Integer>>();
-        final Graph.Edge<Integer> e1_2 = new Graph.Edge<Integer>(7, v1, v2);
-        final Graph.Edge<Integer> e1_3 = new Graph.Edge<Integer>(9, v1, v3);
-        final Graph.Edge<Integer> e1_6 = new Graph.Edge<Integer>(14, v1, v6);
-        final Graph.Edge<Integer> e2_3 = new Graph.Edge<Integer>(10, v2, v3);
-        final Graph.Edge<Integer> e2_4 = new Graph.Edge<Integer>(15, v2, v4);
-        final Graph.Edge<Integer> e3_4 = new Graph.Edge<Integer>(11, v3, v4);
-        final Graph.Edge<Integer> e3_6 = new Graph.Edge<Integer>(2, v3, v6);
-        final Graph.Edge<Integer> e5_6 = new Graph.Edge<Integer>(9, v5, v6);
-        final Graph.Edge<Integer> e4_5 = new Graph.Edge<Integer>(6, v4, v5);
-        final Graph.Edge<Integer> e1_7 = new Graph.Edge<Integer>(1, v1, v7);
-        final Graph.Edge<Integer> e1_8 = new Graph.Edge<Integer>(1, v1, v8);
+        final Graph.Edge<Integer> e1_2 = new Graph.Edge<Integer>(1, v1, v2);
+        final Graph.Edge<Integer> e1_4 = new Graph.Edge<Integer>(9, v1, v4);
+        final Graph.Edge<Integer> e2_9 = new Graph.Edge<Integer>(15, v2, v9);
+        final Graph.Edge<Integer> e3_4 = new Graph.Edge<Integer>(2, v3, v4);
+        final Graph.Edge<Integer> e3_5 = new Graph.Edge<Integer>(10, v3, v5);
+        final Graph.Edge<Integer> e3_6 = new Graph.Edge<Integer>(1, v3, v6);
+        final Graph.Edge<Integer> e3_7 = new Graph.Edge<Integer>(5, v3, v7);
+        final Graph.Edge<Integer> e6_9 = new Graph.Edge<Integer>(7, v6, v9);
+        final Graph.Edge<Integer> e7_8 = new Graph.Edge<Integer>(4, v7, v8);
+        final Graph.Edge<Integer> e7_10 = new Graph.Edge<Integer>(3, v7, v10);
         {
             edges.add(e1_2);
-            edges.add(e1_3);
-            edges.add(e1_6);
-            edges.add(e2_3);
-            edges.add(e2_4);
+            edges.add(e1_4);
+            edges.add(e2_9);
             edges.add(e3_4);
+            edges.add(e3_5);
             edges.add(e3_6);
-            edges.add(e5_6);
-            edges.add(e4_5);
-            edges.add(e1_7);
-            edges.add(e1_8);
+            edges.add(e3_7);
+            edges.add(e6_9);
+            edges.add(e7_8);
+            edges.add(e7_10);
         }
 
         final Graph<Integer> graph = new Graph<Integer>(verticies, edges);
     }
-
 }
