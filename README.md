@@ -10,14 +10,14 @@ El repositorio contiene los siguientes elementos principales:
 
 Se ha clonado el código fuente de los algoritmos y estructuras de datos de Justin Wetherell desde su repositorio en Github.
 
-        ```bash
+        ``bash
         git clone https://github.com/phishman3579/java-algorithms-implementation.git
     
 2. Clase Principal (Main.java):
 
 Se ha desarrollado una clase principal llamada Main, que sirve como punto de entrada para el programa. Inicialmente, el código proporciona una salida simple para verificar el    correcto funcionamiento.
 
-        ```java
+        ``java
         package aplicacion;
     
         import com.jwetherell.algorithms.data_structures.Graph;
