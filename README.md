@@ -19,39 +19,37 @@ Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el có
 
 Se ha desarrollado una clase principal llamada Main, que sirve como punto de entrada para el programa. Inicialmente, el código proporciona una salida simple para verificar el    correcto funcionamiento.
 
-        ```java
-        package aplicacion;
-    
-        import com.jwetherell.algorithms.data_structures.Graph;
-        import com.jwetherell.algorithms.data_structures.Graph.Edge;
-        import com.jwetherell.algorithms.data_structures.Graph.TYPE;
-        import com.jwetherell.algorithms.data_structures.Graph.Vertex;
-        
-        import java.util.ArrayList;
-        import java.util.HashMap;
-        import java.util.Iterator;
-        import java.util.List;
-        import java.util.Map;
-        
-        import com.jwetherell.algorithms.graph.*;
-        
-        public class Main {
-            // Programa que genera un camino aplicando el algoritmo A estrella (implementado en la clase AStar)
-            public static void main(String[] args) {
-                UndirectedGraph g = new UndirectedGraph();
-                System.out.println(g.graph);
-                AStar<Integer> aStar = new AStar<Integer>();
-                List<Graph.Edge<Integer>> path = aStar.aStar(g.graph, g.v1, g.v5);
-                System.out.println(path);
-            }
-        
-            private static class UndirectedGraph {
-               /// definir grafo
-            }
-        
-    }
-    ```
+```java
+package aplicacion;
 
+import com.jwetherell.algorithms.data_structures.Graph;
+import com.jwetherell.algorithms.data_structures.Graph.Edge;
+import com.jwetherell.algorithms.data_structures.Graph.TYPE;
+import com.jwetherell.algorithms.data_structures.Graph.Vertex;
+        
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+        
+import com.jwetherell.algorithms.graph.*;
+        
+public class Main {
+    // Programa que genera un camino aplicando el algoritmo A estrella (implementado en la clase AStar)
+    public static void main(String[] args) {
+        UndirectedGraph g = new UndirectedGraph();
+        System.out.println(g.graph);
+        AStar<Integer> aStar = new AStar<Integer>();
+        List<Graph.Edge<Integer>> path = aStar.aStar(g.graph, g.v1, g.v5);
+        System.out.println(path);
+    }
+
+   private static class UndirectedGraph {
+      /// Definir grafo
+   }
+}
+```
 
 Para verificar la funcionalidad, se puede ejecutar el comando desde el directorio del proyecot:
 
