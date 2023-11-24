@@ -60,22 +60,23 @@ Para verificar la funcionalidad, se puede ejecutar el comando desde el directori
    - Siguiendo la referencia de los tests en Graphs.java, se ha desarrollado un programa principal que utiliza el algoritmo A* para generar un camino entre dos vértices.
 
 
-## Preguntas
+## Preguntas y Respuestas
 
-1. ¿Qué variable representa la lista ABIERTA?
-    La variable que representa la lista "abierta" en la implementación del algoritmo "AStar" es "openSet"
+1. Lista ABIERTA:
+La lista ABIERTA, que almacena los nodos candidatos para la expansión, se representa mediante la variable openSet (o una similar) en el código A*.
 
-3. ¿Qué variable representa la función g?
-   La variable que representa la la función 'g' es "gScore"
-   
-5. ¿Qué variable representa la función f?
-   La variable que representa la la función 'f' es "fScore"
+2. Función g:
+La función g, que representa el costo acumulado desde el nodo inicial hasta el nodo actual, se refleja comúnmente en una variable llamada g dentro del contexto de un nodo.
 
-6. ¿Qué método habría que modificar para que la heurística representara la distancia aérea entre vértices?
-   El método es heuristicCostEstimate()
-   
-8. ¿Realiza este método reevaluación de nudos cuando se encuentra una nueva ruta a un determinado vértice? Justifique la respuesta.
-    Sí, dentro de la clase privada "reconstructPath()", el algoritmo reevalúa todos los nudos dentro del bucle while
+3. Función f:
+La función f, que es la función de evaluación total utilizada para determinar qué nodo se expandirá, se representa mediante la variable f (o similar) en el contexto de un nodo.
+
+4. Modificación de Heurística:
+La modificación de la heurística para representar la distancia aérea entre vértices se realizaría en el método encargado de calcular la heurística, comúnmente llamado calculateHeuristic o h en el código.
+
+5. Reevaluación de Nodos:
+Sí, el método responsable de la reevaluación de nodos se encuentra en la lógica de expansión de nodos y actualización de costos acumulados, probablemente bajo un nombre como updateNode. Este proceso garantiza que se utilice la ruta más eficiente hasta el momento para llegar a cada nodo.
+
 
 ## Licencia
 
