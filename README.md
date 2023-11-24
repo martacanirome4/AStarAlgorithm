@@ -64,22 +64,24 @@ ant run_main
 
 ## **Preguntas y Respuestas**
 
-**1. Lista ABIERTA:**
+1. **Lista ABIERTA:**
    
    La lista ABIERTA, que almacena los nodos candidatos para la expansión, se representa mediante la variable openSet (o una similar) en el código A*.
 
-**2. Función g:**
+2. **Función g:**
    
 La función g, que representa el costo acumulado desde el nodo inicial hasta el nodo actual, se refleja comúnmente en una variable llamada g dentro del contexto de un nodo.
 
-**3. Función f:**
+3. **Función f:**
 
 La función f, que es la función de evaluación total utilizada para determinar qué nodo se expandirá, se representa mediante la variable f (o similar) en el contexto de un nodo.
 
-**4. Modificación de Heurística:**
+4. **Modificación de Heurística:**
+
 La modificación de la heurística para representar la distancia aérea entre vértices se realizaría en el método encargado de calcular la heurística, comúnmente llamado calculateHeuristic o h en el código.
 
-**5. Reevaluación de Nodos:**
+5. **Reevaluación de Nodos:**
+
 Sí, el método responsable de la reevaluación de nodos se encuentra en la lógica de expansión de nodos y actualización de costos acumulados, probablemente bajo un nombre como updateNode. Este proceso garantiza que se utilice la ruta más eficiente hasta el momento para llegar a cada nodo.
 
 
