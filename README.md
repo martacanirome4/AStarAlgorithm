@@ -4,7 +4,7 @@
 
 ### **Descripción**
 
-Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el código proporcionado por Justin Wetherell en su repositorio de algoritmos y estructuras de datos. A lo largo del desarrollo, se ha creado una clase principal llamada `Main` que actúa como punto de entrada para el programa de la práctica.
+Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el código proporcionado por Justin Wetherell en su repositorio de algoritmos y estructuras de datos. Se ha implementado una clase principal llamada `Main` que actúa como punto de entrada para el programa de la práctica, de manera que compruebe el funcionamiento correcto de este algoritmo sobre dos grafos, y devuelve el camino óptimo.
 
 ### **Contenido del Repositorio**
 
@@ -18,7 +18,9 @@ git clone https://github.com/phishman3579/java-algorithms-implementation.git
   
 2. **Clase Principal (Main.java):**
 
-Se ha implementado en la clase principal Main, que sirve como punto de entrada para el programa, un programa que a partir de un grafo no dirigido  __UndirectedGraph__ (g) y  un grafo dirigido __DirectedGraph__ (g1), obtiene e imprime por pantalla el camino óptimo entre dos vértices especificados _(en este caso desde v1 hasta v2 para ambos)_ utilizando el algoritmo A*, implementado en la clase AStar.
+Se ha implementado en la clase principal Main, que sirve como punto de entrada para el programa, un programa que a partir de dos grafos, uno no dirigido  **__UndirectedGraph__, (g)** y uno dirigido **__DirectedGraph__, (g1)**, obtiene el camino óptimo entre dos vértices especificados _(en este caso desde v1 hasta v2 para ambos)_ utilizando el algoritmo A* delaclase __AStar__, e imprime por pantalla el camino óptimo.
+
+A continuación se muestra el código implementado:
 
 ```java
 package aplicacion;
@@ -62,33 +64,112 @@ Para verificar la funcionalidad, se puede ejecutar el comando desde el directori
 ant run_main
 ```
 
-__Visualicón gráfico de los grafos no dirigidos y dirigidos__
+## Visualización gráfica
+
+<ins>Representación del grafo no dirigido implementado - g</ins>
+
+![g](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/5480b29d-741f-43be-8dc7-6c7c158df53d)
+
+<ins>Camino óptimo - g</ins>
+
+![g*](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/938d99d3-758a-469e-8c31-f595d857dfed)
 
 
-__Resultado obtenido para un camino óptimo desde v1 hasta v2__
 
-3. **Generación del camino A***
+<ins>Representación del grafo dirigido implementado - g1</ins>
 
-   - Siguiendo la referencia de los tests en Graphs.java, se ha desarrollado un programa principal que utiliza el algoritmo A* para generar un camino entre dos vértices.
+![g1](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/3a388b53-2006-401d-b8ae-998c8de3576e)
 
+<ins>Camino óptimo - g1</ins>
+
+![g1*](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/83395098-e958-4986-acf0-221a6782d672)
+
+
+## Probar el funcionamiento del algoritmo
+
+Para comprobar el resultado de probar el algoritmo A* sobre estos grafos, basta con navegar en la terminal hasta el directorio del proyecto y ejecutar el  siguiente comando:
+
+  ```bash
+   AStarAlgorithm % ant run_main
+  ```
+
+Es necesario tener instalado, previamente, el comando __ant__.
+
+A continuación, el programa devolverá el resultado de la siguiente manera:
+
+<img width="1001" alt="Captura de pantalla 2023-11-28 a las 15 41 27" src="https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/81abcc28-cd28-493a-b811-a4600029a715">
+
+Como se puede observar, la respuesta dada por el programa se corresponde con la solución correcta.
 
 ## **Preguntas y Respuestas**
 
 1. **Lista ABIERTA:**
    
-La lista ABIERTA, que almacena los nodos candidatos para la expansión, se representa mediante la variable _openSet_ en el código A*.
+La lista ABIERTA en el contexto del algoritmo A*, que almacena los nodos candidatos para la expansión, está representada mediante la variable __openSet__. En el código proporcionado, openSet es una lista de vértices candidatos a ser evaluados durante la ejecución del algoritmo. Inicialmente, esta lista contiene sólo el vértice inicial y se actualiza a medida que el algoritmo explora los nodos en busca de la solución.
+
+En la implementación del algoritmo A*, las operaciones de agregar y eliminar de la lista openSet se utilizan para administrar qué nodos se consideran para la exploración. La lista abierta contiene los nodos que aún no han sido evaluados completamente y que pueden considerarse como posibles candidatos para formar parte de la ruta óptima desde el nodo inicial hasta el nodo objetivo.
 
 2. **Función g:**
-   
-La función g, que representa el costo acumulado desde el nodo inicial hasta el nodo actual, se refleja comúnmente en una variable llamada _gScore_ dentro del contexto de un nodo.
+
+La función g está representada por la variable '__gScore__'. En el código proporcionado, '__gScore__' es un mapa que realiza un seguimiento del costo acumulado desde el nodo inicial hasta cada nodo en el gráfico a lo largo de la ruta más conocida hasta ese punto.
+
+La función g generalmente representa el costo real acumulado desde el nodo inicial hasta el nodo actual a lo largo de la ruta actual. En el código, puede ver que el gScore de un nodo se actualiza cuando se encuentra la ruta más corta a ese nodo durante la exploración del gráfico.
+
+Aquí está la parte relevante del código que maneja la función g:
+
+  ```java
+  // Cost from start along best known path.
+  final Map<Graph.Vertex<T>, Integer> gScore = new HashMap<Graph.Vertex<T>, Integer>();
+  gScore.put(start, 0);
+  
+  // ...
+  
+  final int tentativeGScore = gScore.get(current) + distanceBetween(current, neighbor);
+  if (!openSet.contains(neighbor))
+      openSet.add(neighbor);
+  else if (tentativeGScore >= gScore.get(neighbor))
+      continue;
+  
+  // This path is the best until now. Record it!
+  cameFrom.put(neighbor, current);
+  gScore.put(neighbor, tentativeGScore);
+  ```
+
+En este fragmento, el nuevo costo acumulado (**'tentativeGScore'**(en  se calcula al pasar del nodo actual **('current')** a su vecino **('neighbor')**. Luego, se compara este nuevo costo con el mejor costo conocido hasta ese momento **('gScore.get(neighbor))'**, y si el nuevo costo es menor, se actualiza el **'gScore'** del nodo **'neighbor'** y se registra el nodo **'current'** como el mejor nodo para llegar a **'neighbor'**.
 
 3. **Función f:**
 
-La función f, que es la función de evaluación total utilizada para determinar qué nodo se expandirá, se representa mediante la variable _fScore_ en el contexto de un nodo.
+En el contexto del algoritmo A*, la función f está representada por la variable __fScore__. En el código proporcionado, fScore es un mapa que realiza un seguimiento de la estimación del costo total desde el nodo inicial hasta el nodo objetivo a través de la mejor ruta conocida hasta ese punto.
+
+La función f generalmente se define como la suma del costo acumulado real desde el nodo inicial hasta el nodo actual (g) y una estimación heurística del costo desde el nodo actual hasta el nodo objetivo (h). En el caso de A*, la suma de g y h se utiliza para determinar qué nodos explorar a continuación.
+
+Aquí está la parte relevante del código que maneja la función f:
+
+  ```java
+  // Estimated total cost from start to goal through y.
+  final Map<Graph.Vertex<T>, Integer> fScore = new HashMap<Graph.Vertex<T>, Integer>();
+  for (Graph.Vertex<T> v : graph.getVertices())
+      fScore.put(v, Integer.MAX_VALUE);
+  fScore.put(start, heuristicCostEstimate(start, goal));
+  
+  // ...
+  
+  final int estimatedFScore = gScore.get(neighbor) + heuristicCostEstimate(neighbor, goal);
+  fScore.put(neighbor, estimatedFScore);
+  ```
+En este fragmento, se calcula el nuevo valor estimado de f para el nodo **'neighbor'** y se actualiza en el mapa fScore. La estimación heurística (h) se obtiene llamando a la función **?heuristicCostEstimate'**, y el costo acumulado real (g) se obtiene del **'gScore'**. Este valor estimado de f se utiliza para priorizar la exploración de nodos durante el algoritmo A*.
 
 4. **Modificación de Heurística:**
 
-La modificación de la heurística para representar la distancia aérea entre vértices se realizaría en el método encargado de calcular la heurística, llamado _heuristicCostEstimate_ en el código.
+Para modificar el método que representa la heurística (h) para que represente la distancia aérea (también conocida como distancia euclidiana) entre vértices, deberías ajustar el método heuristicCostEstimate. Actualmente, este método tiene una implementación simple que devuelve un valor constante de 1. La implementación actual:
+
+  ```java
+  // Default heuristic: cost to each vertex is 1.
+  @SuppressWarnings("unused") 
+  protected int heuristicCostEstimate(Graph.Vertex<T> start, Graph.Vertex<T> goal) {
+      return 1;
+  }
+  ```
 
 5. **Reevaluación de Nodos:**
 
