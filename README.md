@@ -2,7 +2,7 @@
 
 ### **Descripción**
 
-Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el código proporcionado por Justin Wetherell en su repositorio de algoritmos y estructuras de datos. Se ha implementado una clase principal llamada `Main` que actúa como punto de entrada para el programa de la práctica, de manera que compruebe el funcionamiento correcto de este algoritmo sobre dos grafos, y devuelve el camino óptimo.
+Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el código proporcionado por Justin Wetherell en su repositorio de algoritmos y estructuras de datos. Se ha implementado una clase principal llamada `Main` que actúa como punto de entrada para el programa de la práctica, de manera que compruebe el funcionamiento correcto de este algoritmo sobre dos grafos, y devuelva el camino óptimo.
 
 ### **Contenido del Repositorio**
 
@@ -16,7 +16,7 @@ git clone https://github.com/phishman3579/java-algorithms-implementation.git
   
 2. **Clase Principal (Main.java):**
 
-Se ha implementado en la clase principal Main, que sirve como punto de entrada para el programa, un programa que a partir de dos grafos, uno no dirigido  **__UndirectedGraph__, (g)** y uno dirigido **__DirectedGraph__, (g1)**, obtiene el camino óptimo entre dos vértices especificados _(en este caso desde v1 hasta v2 para ambos)_ utilizando el algoritmo A* delaclase __AStar__, e imprime por pantalla el camino óptimo.
+Se ha implementado en la clase principal Main, que sirve como punto de entrada para el programa, un programa que a partir de dos grafos, uno no dirigido  **__UndirectedGraph__ (g)** y uno dirigido **__DirectedGraph__ (g1)**, obtiene el camino óptimo entre dos vértices especificados _(desde v1 hasta v9 para ambos)_ utilizando el algoritmo A* de la clase __AStar__, e imprime por pantalla el camino óptimo.
 
 A continuación se muestra el código implementado:
 
