@@ -1,6 +1,4 @@
-# Algoritmo A* - Práctica de búsqueda heurística sin adversarios
-
-## **Introducción al Proyecto AStar en Java**
+# Algoritmo A*: Práctica de búsqueda heurística sin adversarios
 
 ### **Descripción**
 
