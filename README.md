@@ -161,12 +161,6 @@ public class Main {
 }
 ```
 
-Para verificar la funcionalidad, se puede ejecutar el comando desde el directorio del proyecot:
-
-```bash
-ant run_main
-```
-
 ## Visualización gráfica
 
 <ins>Representación del grafo no dirigido implementado - g</ins>
