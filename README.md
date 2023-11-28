@@ -161,38 +161,37 @@ public class Main {
 
 ## Visualización gráfica
 
-<ins>Representación del grafo no dirigido implementado - g</ins>
+**<ins>Representación del grafo no dirigido implementado (g)</ins>**
 
 ![g](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/5480b29d-741f-43be-8dc7-6c7c158df53d)
 
-<ins>Camino óptimo - g</ins>
+<ins>Camino óptimo (g)</ins>
 
 ![g*](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/938d99d3-758a-469e-8c31-f595d857dfed)
 
 
-
-<ins>Representación del grafo dirigido implementado - g1</ins>
+**<ins>Representación del grafo dirigido implementado (g1)</ins>**
 
 ![g1](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/3a388b53-2006-401d-b8ae-998c8de3576e)
 
-<ins>Camino óptimo - g1</ins>
+**<ins>Camino óptimo (g1)</ins>**
 
 ![g1*](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/83395098-e958-4986-acf0-221a6782d672)
 
 
 ## Probar el funcionamiento del algoritmo
 
-Para comprobar el resultado de probar el algoritmo A* sobre estos grafos, basta con navegar en la terminal hasta el directorio del proyecto y ejecutar el  siguiente comando:
+Para comprobar el resultado de probar el algoritmo A* sobre estos grafos, basta con navegar en la terminal hasta el directorio del proyecto y ejecutar el  siguiente comando (es necesario tener instalado previamente el entorno necesario para ejecurar el comando __ant__):
 
   ```bash
   ant run_main
   ```
 
-Es necesario tener instalado, previamente, el comando __ant__.
-
 A continuación, el programa devolverá el resultado de la siguiente manera:
 
+
 <img width="1001" alt="Captura de pantalla 2023-11-28 a las 15 41 27" src="https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/81abcc28-cd28-493a-b811-a4600029a715">
+
 
 Como se puede observar, la respuesta dada por el programa se corresponde con la solución correcta.
 
