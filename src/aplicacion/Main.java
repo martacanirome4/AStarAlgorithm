@@ -14,7 +14,6 @@ import java.util.Map;
 import com.jwetherell.algorithms.graph.*;
 
 public class Main {
-    // programa que genere un camino aplicando el algoritmo  A estrella (AStar)
 
     public static void main(String[] args) {
         // Unirected
@@ -40,8 +39,6 @@ public class Main {
         for (Graph.Edge<Integer> edge : path2) {
             System.out.println(edge);
         }
-
-
     }
 
     // Undirected

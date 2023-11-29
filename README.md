@@ -37,13 +37,31 @@ import java.util.Map;
 import com.jwetherell.algorithms.graph.*;
         
 public class Main {
-    // Programa que genera un camino aplicando el algoritmo A estrella (implementado en la clase AStar)
+    
     public static void main(String[] args) {
+        // Unirected
         UndirectedGraph g = new UndirectedGraph();
-        System.out.println(g.graph);
         AStar<Integer> aStar = new AStar<Integer>();
-        List<Graph.Edge<Integer>> path = aStar.aStar(g.graph, g.v1, g.v5);
-        System.out.println(path);
+        List<Graph.Edge<Integer>> path = aStar.aStar(g.graph, g.v1, g.v9);
+
+        int initialNode = g.v1.getValue();
+        int finalNode = g.v9.getValue();
+        System.out.println("UNDIRECTED GRAPH: Optimal path from vertex " + initialNode + " to " + finalNode + ":");
+        for (Graph.Edge<Integer> edge : path) {
+            System.out.println(edge);
+        }
+
+        // Directed
+        DirectedGraph g2 = new DirectedGraph();
+        AStar<Integer> aStar2 = new AStar<Integer>();
+        List<Graph.Edge<Integer>> path2 = aStar2.aStar(g2.graph, g2.v1, g2.v9);
+
+        int initialNode2 = g2.v1.getValue();
+        int finalNode2 = g2.v9.getValue();
+        System.out.println("DIRECTED GRAPH: Optimal path from vertex " + initialNode2 + " to " + finalNode2 + ":");
+        for (Graph.Edge<Integer> edge : path2) {
+            System.out.println(edge);
+        }
     }
 
     // Undirected
