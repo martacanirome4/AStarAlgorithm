@@ -37,7 +37,7 @@ import java.util.Map;
 import com.jwetherell.algorithms.graph.*;
         
 public class Main {
-    
+
     public static void main(String[] args) {
         // Unirected
         UndirectedGraph g = new UndirectedGraph();
@@ -285,7 +285,24 @@ Para modificar el método que representa la heurística (h) para que represente 
 
 5. **Reevaluación de Nodos:**
 
-Sí, el método responsable de la reevaluación de nodos se encuentra en la lógica de expansión de nodos y actualización de costos acumulados, en la clase interna privada  _reconstructPath_. Este proceso garantiza que se utilice la ruta más eficiente hasta el momento para llegar a cada nodo.
+La reevaluación de nodos en el algoritmo A* se realiza principalmente en el método '**__aStar__**', cuando encuentra una nueva ruta a un determinado vértice. Esta reevaluación ocurre en el siguiente fragmento de código dentro del bucle principal del algoritmo:
+
+```java
+if (!openSet.contains(neighbor))
+    openSet.add(neighbor); // Discover a new node
+else if (tenativeGScore >= gScore.get(neighbor))
+    continue;
+```
+
+La reevaluación funciona de la siguiente manera:
+
+1. **Nodo Descubierto**: Si el vecino ('**neighbor**') no está en la lista abierta ('**openSet**'), se agrega a la lista. Esto significa que se ha descubierto un nuevo camino hacia ese nodo.
+
+2. **Ruta Mejorada**: Si el vecino ya está en la lista abierta y la nueva estimación del costo acumulado ('**tenativeGScore**') es menor que el costo actual almacenado en **gScore** para ese vecino, entonces se ha encontrado una ruta mejor hacia ese nodo. En este caso, se actualiza la información asociada con ese nodo, incluyendo la ruta y los costos acumulados.
+
+Por lo tanto, si se encuentra una nueva y mejor ruta hacia un nodo existente, se realiza la reevaluación de ese nodo, actualizando la información asociada con él en términos de la ruta y los costos acumulados.
+
+Por otra parte, la clase **__reconstructPath__** se encarga de reconstruir la ruta final una vez que se ha encontrado el nodo objetivo, pero no realiza la reevaluación de nodos durante la búsqueda activa.
 
 ```java
 // Reconstructs path because the path is stored in the edges not the vertices
