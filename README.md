@@ -1,338 +1,121 @@
-# Algoritmo A*: Práctica de búsqueda heurística sin adversarios
+# ⭐ Algoritmo A\*: Búsqueda Heurística sin Adversarios
 
-### **Descripción**
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Java](https://img.shields.io/badge/language-Java-orange)
+![License](https://img.shields.io/badge/license-Apache_2.0-lightgrey)
 
-Este proyecto implementa el algoritmo de búsqueda A* en Java, utilizando el código proporcionado por Justin Wetherell en su repositorio de algoritmos y estructuras de datos. Se ha implementado una clase principal llamada `Main` que actúa como punto de entrada para el programa de la práctica, de manera que compruebe el funcionamiento correcto de este algoritmo sobre dos grafos, y devuelva el camino óptimo.
+### 🚀 Implementación práctica del algoritmo A* para encontrar caminos óptimos en grafos dirigidos y no dirigidos. Desarrollado en Java.
 
-### **Contenido del Repositorio**
+---
 
-1. **Código AStar en Java:**
+## 🧠 ¿Qué es A\*?
 
-Se ha clonado el código fuente de los algoritmos y estructuras de datos de Justin Wetherell desde su repositorio en [Github] (https://github.com/phishman3579/java-algorithms-implementation).
+El algoritmo A\* (A-Star) es un algoritmo de búsqueda heurística usado para encontrar el **camino más corto** entre dos puntos. Combina lo mejor de la búsqueda por costo uniforme y la búsqueda primero el mejor (greedy).  
+Usa una función **f(n) = g(n) + h(n)**, donde:
+- **g(n)** = costo desde el nodo inicial hasta n.
+- **h(n)** = heurística (estimación del costo desde n hasta el objetivo).
+
+> A\* se usa en videojuegos 🎮, sistemas GPS 🚗 y navegación de robots 🤖.
+
+---
+
+## 🗂️ Contenido del Repositorio
+
+- Clonado del código de Justin Wetherell → [Repositorio original](https://github.com/phishman3579/java-algorithms-implementation)
+- Clase principal `Main.java` que prueba A* sobre dos grafos:
+  - **UndirectedGraph (g)**
+  - **DirectedGraph (g1)**
+- Visualización de grafos y caminos óptimos.
+- Preguntas clave sobre la implementación del algoritmo.
+
+---
+
+## 📦 Instalación y Ejecución
+
+Requisitos: tener Java y Apache Ant instalados.
 
 ```bash
-git clone https://github.com/phishman3579/java-algorithms-implementation.git
-```
-  
-2. **Clase Principal (Main.java):**
-
-Se ha implementado en la clase principal Main, que sirve como punto de entrada para el programa, un programa que a partir de dos grafos, uno no dirigido  **__UndirectedGraph__ (g)** y uno dirigido **__DirectedGraph__ (g1)**, obtiene el camino óptimo entre dos vértices especificados _(desde v1 hasta v9 para ambos)_ utilizando el algoritmo A* de la clase __AStar__, e imprime por pantalla el camino óptimo.
-
-A continuación se muestra el código implementado:
-
-```java
-package aplicacion;
-
-import com.jwetherell.algorithms.data_structures.Graph;
-import com.jwetherell.algorithms.data_structures.Graph.Edge;
-import com.jwetherell.algorithms.data_structures.Graph.TYPE;
-import com.jwetherell.algorithms.data_structures.Graph.Vertex;
-        
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-        
-import com.jwetherell.algorithms.graph.*;
-        
-public class Main {
-
-    public static void main(String[] args) {
-        // Unirected
-        UndirectedGraph g = new UndirectedGraph();
-        AStar<Integer> aStar = new AStar<Integer>();
-        List<Graph.Edge<Integer>> path = aStar.aStar(g.graph, g.v1, g.v9);
-
-        int initialNode = g.v1.getValue();
-        int finalNode = g.v9.getValue();
-        System.out.println("UNDIRECTED GRAPH: Optimal path from vertex " + initialNode + " to " + finalNode + ":");
-        for (Graph.Edge<Integer> edge : path) {
-            System.out.println(edge);
-        }
-
-        // Directed
-        DirectedGraph g2 = new DirectedGraph();
-        AStar<Integer> aStar2 = new AStar<Integer>();
-        List<Graph.Edge<Integer>> path2 = aStar2.aStar(g2.graph, g2.v1, g2.v9);
-
-        int initialNode2 = g2.v1.getValue();
-        int finalNode2 = g2.v9.getValue();
-        System.out.println("DIRECTED GRAPH: Optimal path from vertex " + initialNode2 + " to " + finalNode2 + ":");
-        for (Graph.Edge<Integer> edge : path2) {
-            System.out.println(edge);
-        }
-    }
-
-    // Undirected
-    private static class UndirectedGraph {
-        final List<Vertex<Integer>> verticies = new ArrayList<Vertex<Integer>>();
-        final Graph.Vertex<Integer> v1 = new Graph.Vertex<Integer>(1);
-        final Graph.Vertex<Integer> v2 = new Graph.Vertex<Integer>(2);
-        final Graph.Vertex<Integer> v3 = new Graph.Vertex<Integer>(3);
-        final Graph.Vertex<Integer> v4 = new Graph.Vertex<Integer>(4);
-        final Graph.Vertex<Integer> v5 = new Graph.Vertex<Integer>(5);
-        final Graph.Vertex<Integer> v6 = new Graph.Vertex<Integer>(6);
-        final Graph.Vertex<Integer> v7 = new Graph.Vertex<Integer>(7);
-        final Graph.Vertex<Integer> v8 = new Graph.Vertex<Integer>(8);
-        final Graph.Vertex<Integer> v9 = new Graph.Vertex<Integer>(9);
-        final Graph.Vertex<Integer> v10 = new Graph.Vertex<Integer>(10);
-        
-        {
-            verticies.add(v1);
-            verticies.add(v2);
-            verticies.add(v3);
-            verticies.add(v4);
-            verticies.add(v5);
-            verticies.add(v6);
-            verticies.add(v7);
-            verticies.add(v8);
-            verticies.add(v9);
-            verticies.add(v10);
-        }
-
-        final List<Edge<Integer>> edges = new ArrayList<Edge<Integer>>();
-        final Graph.Edge<Integer> e1_2 = new Graph.Edge<Integer>(1, v1, v2);
-        final Graph.Edge<Integer> e1_4 = new Graph.Edge<Integer>(9, v1, v4);
-        final Graph.Edge<Integer> e2_9 = new Graph.Edge<Integer>(15, v2, v9);
-        final Graph.Edge<Integer> e3_4 = new Graph.Edge<Integer>(2, v3, v4);
-        final Graph.Edge<Integer> e3_5 = new Graph.Edge<Integer>(10, v3, v5);
-        final Graph.Edge<Integer> e3_6 = new Graph.Edge<Integer>(1, v3, v6);
-        final Graph.Edge<Integer> e3_7 = new Graph.Edge<Integer>(5, v3, v7);
-        final Graph.Edge<Integer> e6_9 = new Graph.Edge<Integer>(7, v6, v9);
-        final Graph.Edge<Integer> e7_8 = new Graph.Edge<Integer>(4, v7, v8);
-        final Graph.Edge<Integer> e7_10 = new Graph.Edge<Integer>(3, v7, v10);
-        {
-            edges.add(e1_2);
-            edges.add(e1_4);
-            edges.add(e2_9);
-            edges.add(e3_4);
-            edges.add(e3_5);
-            edges.add(e3_6);
-            edges.add(e3_7);
-            edges.add(e6_9);
-            edges.add(e7_8);
-            edges.add(e7_10);
-        }
-
-        final Graph<Integer> graph = new Graph<Integer>(verticies, edges);
-    }
-
-    // Directed
-    private static class DirectedGraph {
-        final List<Vertex<Integer>> verticies = new ArrayList<Vertex<Integer>>();
-        final Graph.Vertex<Integer> v1 = new Graph.Vertex<Integer>(1);
-        final Graph.Vertex<Integer> v2 = new Graph.Vertex<Integer>(2);
-        final Graph.Vertex<Integer> v3 = new Graph.Vertex<Integer>(3);
-        final Graph.Vertex<Integer> v4 = new Graph.Vertex<Integer>(4);
-        final Graph.Vertex<Integer> v5 = new Graph.Vertex<Integer>(5);
-        final Graph.Vertex<Integer> v6 = new Graph.Vertex<Integer>(6);
-        final Graph.Vertex<Integer> v7 = new Graph.Vertex<Integer>(7);
-        final Graph.Vertex<Integer> v8 = new Graph.Vertex<Integer>(8);
-        final Graph.Vertex<Integer> v9 = new Graph.Vertex<Integer>(9);
-        final Graph.Vertex<Integer> v10 = new Graph.Vertex<Integer>(10);
-        {
-            verticies.add(v1);
-            verticies.add(v2);
-            verticies.add(v3);
-            verticies.add(v4);
-            verticies.add(v5);
-            verticies.add(v6);
-            verticies.add(v7);
-            verticies.add(v8);
-            verticies.add(v9);
-            verticies.add(v10);
-        }
-
-        final List<Edge<Integer>> edges = new ArrayList<Edge<Integer>>();
-        final Graph.Edge<Integer> e1_2 = new Graph.Edge<Integer>(1, v1, v2);
-        final Graph.Edge<Integer> e1_3 = new Graph.Edge<Integer>(2, v1, v3);
-        final Graph.Edge<Integer> e1_4 = new Graph.Edge<Integer>(3, v1, v4);
-        final Graph.Edge<Integer> e2_5 = new Graph.Edge<Integer>(10, v2, v5);
-        final Graph.Edge<Integer> e3_5 = new Graph.Edge<Integer>(4, v3, v5);
-        final Graph.Edge<Integer> e3_6 = new Graph.Edge<Integer>(1, v3, v6);
-        final Graph.Edge<Integer> e3_8 = new Graph.Edge<Integer>(20, v3, v8);
-        final Graph.Edge<Integer> e5_6 = new Graph.Edge<Integer>(5, v5, v6);
-        final Graph.Edge<Integer> e8_7 = new Graph.Edge<Integer>(7, v8, v7);
-        final Graph.Edge<Integer> e8_9 = new Graph.Edge<Integer>(6, v8, v9);
-        final Graph.Edge<Integer> e7_10 = new Graph.Edge<Integer>(17, v7, v10);
-
-        {
-            edges.add(e1_2);
-            edges.add(e1_3);
-            edges.add(e1_4);
-            edges.add(e2_5);
-            edges.add(e3_5);
-            edges.add(e3_6);
-            edges.add(e3_8);
-            edges.add(e5_6);
-            edges.add(e8_7);
-            edges.add(e8_9);
-            edges.add(e7_10);
-        
-        }
-
-        final Graph<Integer> graph = new Graph<Integer>(Graph.TYPE.DIRECTED, verticies, edges);
-    }
-}
+git clone https://github.com/martacanirome4/AStarAlgorithm.git
+cd AStarAlgorithm/
+ant run_main
 ```
 
-## Visualización gráfica
+La consola mostrará el camino óptimo para cada grafo:
 
-**<ins>Representación del grafo no dirigido implementado (g)</ins>**
+![resultado](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/81abcc28-cd28-493a-b811-a4600029a715)
+
+---
+
+## 🔍 Visualización de Grafos
+
+### 📊 Grafo No Dirigido (g)
 
 ![g](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/5480b29d-741f-43be-8dc7-6c7c158df53d)
 
-<ins>Camino óptimo (g)</ins>
-
+➡️ **Camino óptimo:**  
 ![g*](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/938d99d3-758a-469e-8c31-f595d857dfed)
 
-
-**<ins>Representación del grafo dirigido implementado (g1)</ins>**
+### 📊 Grafo Dirigido (g1)
 
 ![g1](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/3a388b53-2006-401d-b8ae-998c8de3576e)
 
-**<ins>Camino óptimo (g1)</ins>**
-
+➡️ **Camino óptimo:**  
 ![g1*](https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/83395098-e958-4986-acf0-221a6782d672)
 
+---
 
-## Probar el funcionamiento del algoritmo
+## ❓ Preguntas Clave
 
-Para comprobar el resultado de probar el algoritmo A* sobre estos grafos, basta con navegar en la terminal hasta el directorio del proyecto y ejecutar el  siguiente comando (es necesario tener instalado previamente el entorno necesario para ejecurar el comando __ant__):
+### 1. 📌 ¿Qué es la lista ABIERTA?
+- Variable `openSet`: nodos candidatos a ser evaluados.
+- Inicialmente contiene solo el nodo inicial.
+- Se va actualizando durante la búsqueda.
 
-  ```bash
-  ant run_main
-  ```
+### 2. 📌 ¿Qué representa la función **g**?
+- Variable `gScore`: costo acumulado desde el nodo inicial.
+- Se actualiza cuando se encuentra una ruta más corta a un nodo.
 
-A continuación, el programa devolverá el resultado de la siguiente manera:
+### 3. 📌 ¿Qué representa la función **f**?
+- Variable `fScore`: estimación total desde el nodo inicial hasta el objetivo.
+- Se calcula como `g(n) + h(n)`.
 
-
-<img width="1001" alt="Captura de pantalla 2023-11-28 a las 15 41 27" src="https://github.com/martacanirome4/AStarAlgorithm/assets/50625677/81abcc28-cd28-493a-b811-a4600029a715">
-
-
-Como se puede observar, la respuesta dada por el programa se corresponde con la solución correcta.
-
-## **Preguntas y Respuestas**
-
-1. **Lista ABIERTA:**
-   
-La lista ABIERTA en el contexto del algoritmo A*, que almacena los nodos candidatos para la expansión, está representada mediante la variable __openSet__. En el código proporcionado, openSet es una lista de vértices candidatos a ser evaluados durante la ejecución del algoritmo. Inicialmente, esta lista contiene sólo el vértice inicial y se actualiza a medida que el algoritmo explora los nodos en busca de la solución.
-
-En la implementación del algoritmo A*, las operaciones de agregar y eliminar de la lista openSet se utilizan para administrar qué nodos se consideran para la exploración. La lista abierta contiene los nodos que aún no han sido evaluados completamente y que pueden considerarse como posibles candidatos para formar parte de la ruta óptima desde el nodo inicial hasta el nodo objetivo.
-
-2. **Función g:**
-
-La función g está representada por la variable '__gScore__'. En el código proporcionado, '__gScore__' es un mapa que realiza un seguimiento del costo acumulado desde el nodo inicial hasta cada nodo en el gráfico a lo largo de la ruta más conocida hasta ese punto.
-
-La función g generalmente representa el costo real acumulado desde el nodo inicial hasta el nodo actual a lo largo de la ruta actual. En el código, puede ver que el gScore de un nodo se actualiza cuando se encuentra la ruta más corta a ese nodo durante la exploración del gráfico.
-
-Aquí está la parte relevante del código que maneja la función g:
-
-  ```java
-  // Cost from start along best known path.
-  final Map<Graph.Vertex<T>, Integer> gScore = new HashMap<Graph.Vertex<T>, Integer>();
-  gScore.put(start, 0);
-  
-  // ...
-  
-  final int tentativeGScore = gScore.get(current) + distanceBetween(current, neighbor);
-  if (!openSet.contains(neighbor))
-      openSet.add(neighbor);
-  else if (tentativeGScore >= gScore.get(neighbor))
-      continue;
-  
-  // This path is the best until now. Record it!
-  cameFrom.put(neighbor, current);
-  gScore.put(neighbor, tentativeGScore);
-  ```
-
-En este fragmento, el nuevo costo acumulado (**'tentativeGScore'**(en  se calcula al pasar del nodo actual **('current')** a su vecino **('neighbor')**. Luego, se compara este nuevo costo con el mejor costo conocido hasta ese momento **('gScore.get(neighbor))'**, y si el nuevo costo es menor, se actualiza el **'gScore'** del nodo **'neighbor'** y se registra el nodo **'current'** como el mejor nodo para llegar a **'neighbor'**.
-
-3. **Función f:**
-
-En el contexto del algoritmo A*, la función f está representada por la variable __fScore__. En el código proporcionado, fScore es un mapa que realiza un seguimiento de la estimación del costo total desde el nodo inicial hasta el nodo objetivo a través de la mejor ruta conocida hasta ese punto.
-
-La función f generalmente se define como la suma del costo acumulado real desde el nodo inicial hasta el nodo actual (g) y una estimación heurística del costo desde el nodo actual hasta el nodo objetivo (h). En el caso de A*, la suma de g y h se utiliza para determinar qué nodos explorar a continuación.
-
-Aquí está la parte relevante del código que maneja la función f:
-
-  ```java
-  // Estimated total cost from start to goal through y.
-  final Map<Graph.Vertex<T>, Integer> fScore = new HashMap<Graph.Vertex<T>, Integer>();
-  for (Graph.Vertex<T> v : graph.getVertices())
-      fScore.put(v, Integer.MAX_VALUE);
-  fScore.put(start, heuristicCostEstimate(start, goal));
-  
-  // ...
-  
-  final int estimatedFScore = gScore.get(neighbor) + heuristicCostEstimate(neighbor, goal);
-  fScore.put(neighbor, estimatedFScore);
-  ```
-En este fragmento, se calcula el nuevo valor estimado de f para el nodo **'neighbor'** y se actualiza en el mapa fScore. La estimación heurística (h) se obtiene llamando a la función **?heuristicCostEstimate'**, y el costo acumulado real (g) se obtiene del **'gScore'**. Este valor estimado de f se utiliza para priorizar la exploración de nodos durante el algoritmo A*.
-
-4. **Modificación de Heurística:**
-
-Para modificar el método que representa la heurística (h) para que represente la distancia aérea (también conocida como distancia euclidiana) entre vértices, deberías ajustar el método heuristicCostEstimate. Actualmente, este método tiene una implementación simple que devuelve un valor constante de 1. La implementación actual:
-
-  ```java
-  // Default heuristic: cost to each vertex is 1.
-  @SuppressWarnings("unused") 
-  protected int heuristicCostEstimate(Graph.Vertex<T> start, Graph.Vertex<T> goal) {
-      return 1;
-  }
-  ```
-
-5. **Reevaluación de Nodos:**
-
-La reevaluación de nodos en el algoritmo A* se realiza principalmente en el método '**__aStar__**', cuando encuentra una nueva ruta a un determinado vértice. Esta reevaluación ocurre en el siguiente fragmento de código dentro del bucle principal del algoritmo:
+### 4. 🔧 ¿Cómo modificar la heurística?
+Reemplazar la función `heuristicCostEstimate` para calcular **distancia euclidiana**.
 
 ```java
-if (!openSet.contains(neighbor))
-    openSet.add(neighbor); // Discover a new node
-else if (tenativeGScore >= gScore.get(neighbor))
-    continue;
+protected int heuristicCostEstimate(Vertex<T> start, Vertex<T> goal) {
+    // Ejemplo: return distanciaEuclidiana(start, goal);
+}
 ```
 
-La reevaluación funciona de la siguiente manera:
+### 5. ♻️ Reevaluación de nodos
+- Ocurre cuando se encuentra un camino más corto a un nodo ya evaluado.
+- Se actualizan `gScore`, `fScore` y la ruta (`cameFrom`).
 
-1. **Nodo Descubierto**: Si el vecino ('**neighbor**') no está en la lista abierta ('**openSet**'), se agrega a la lista. Esto significa que se ha descubierto un nuevo camino hacia ese nodo.
+---
 
-2. **Ruta Mejorada**: Si el vecino ya está en la lista abierta y la nueva estimación del costo acumulado ('**tenativeGScore**') es menor que el costo actual almacenado en **gScore** para ese vecino, entonces se ha encontrado una ruta mejor hacia ese nodo. En este caso, se actualiza la información asociada con ese nodo, incluyendo la ruta y los costos acumulados.
+## 🛠️ Código Principal
 
-Por lo tanto, si se encuentra una nueva y mejor ruta hacia un nodo existente, se realiza la reevaluación de ese nodo, actualizando la información asociada con él en términos de la ruta y los costos acumulados.
+Ver [`Main.java`](#) para implementación completa.
 
-Por otra parte, la clase **__reconstructPath__** se encarga de reconstruir la ruta final una vez que se ha encontrado el nodo objetivo, pero no realiza la reevaluación de nodos durante la búsqueda activa.
+> Incluye clases internas para grafos dirigidos y no dirigidos, e imprime caminos óptimos por consola.
 
-```java
-// Reconstructs path because the path is stored in the edges not the vertices
-    private List<Graph.Edge<T>> reconstructPath(Map<Graph.Vertex<T>,Graph.Vertex<T>> cameFrom, Graph.Vertex<T> current) {
-        final List<Graph.Edge<T>> totalPath = new ArrayList<Graph.Edge<T>>();
+---
 
-        while (current != null) {
-            final Graph.Vertex<T> previous = current;
-            current = cameFrom.get(current);
-            if (current != null) {
-                final Graph.Edge<T> edge = current.getEdge(previous);
-                totalPath.add(edge);
-            }
-        }
-        Collections.reverse(totalPath);
-        return totalPath;
-    }
-```
+## 📚 Recursos
 
+- 📄 Algoritmos de Justin Wetherell: [GitHub](https://github.com/phishman3579/java-algorithms-implementation)
+- 📘 Explicación visual de A*: [Red Blob Games](https://www.redblobgames.com/pathfinding/a-star/introduction.html)
 
-## **Licencia**
+---
 
-Copyright 2023 Marta Canino Romero
+## 👩‍💻 Autora
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-    http://www.apache.org/licenses/LICENSE-2.0
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+Marta Canino Romero – 2023  
+[GitHub](https://github.com/martacanirome4)
+
+---
+
+## 📄 Licencia
+
+Licensed under the Apache License 2.0 – [Ver licencia](http://www.apache.org/licenses/LICENSE-2.0)
